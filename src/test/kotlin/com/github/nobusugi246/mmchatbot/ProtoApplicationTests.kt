@@ -15,6 +15,8 @@ import java.time.LocalDateTime
 @SpringBootTest
 class ProtoApplicationTests {
 
+    val logger = logger()
+    
 	@Autowired
 	var pomodoroRepository: PomodoroRepository? = null
 
@@ -34,7 +36,7 @@ class ProtoApplicationTests {
 								.flatMap { userRepository?.save(it) })
 				?.thenMany(userRepository!!.findAll())
 				?.subscribe {
-					println(it)
+					logger.info(it.toString())
 				}
 	}
 
